@@ -5,7 +5,21 @@ nav{
 .navbar-brand{
     font-family: 'Baloo Chettan 2', cursive;
 }
-
+.mobile{
+    width:30%;
+   margin:0 auto;
+   border:1px rgb(128, 128, 128);
+    
+   border-style: solid;
+   border-radius: 5px;
+   padding :15px;
+   
+}
+h1{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
 
     
 .flash{
@@ -55,4 +69,9 @@ nav{
 .jumbotron {
     padding:0;
 }
+}
+@media (max-width: 1028px)  {
+    .mobile {
+        width: 50%;
+    }
 }

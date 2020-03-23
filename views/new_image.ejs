@@ -1,12 +1,41 @@
 <%-include("partials/header.ejs") %>
 
-<form action = "/image/new" method = "post" enctype="multipart/form-data">
 
-    <input class="form-control" type="text" name="title" placeholder="image" required>
-    <textarea name="description" placeholder="description" required></textarea>
-    <label for="image">Image</label>
-     <input type="file" id="image" name="image" accept="image/*" required>
-    <button>Submit</button>
-</form>
 
+<div class="container">
+	<div>
+		<h1>
+			New Image
+		</h1><br>
+		<div class="mobile">
+			
+            <form action = "/image/new" method = "post" enctype="multipart/form-data">  
+                    <div class="form-group">
+                         <label for="title">Title</label>
+                         <input class="form-control" type="text" name="title" placeholder="Title" id="title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                         <label for="description">Description</label><br>
+                         <textarea class="form-control" name="description" placeholder="description" id="description" required></textarea>
+                    </div>
+                     <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="file" id="image" name="image" accept="image/*" required>
+                     </div>
+                    
+                    
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block ">
+                            Add Image
+                        </button>
+                    </div>
+
+			</form>
+			<a href="/">Go back</a>
+		</div>
+		
+	</div>
+	
+</div>
 <%-include("partials/footer.ejs") %>

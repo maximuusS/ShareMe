@@ -6,14 +6,50 @@
     <div class="alert alert-success" role="alert"><%=success%></div>
     <%}%>
   </div>
-<form action = "/register" method = "post" enctype="multipart/form-data">
+  
+<!-- <form action = "/register" method = "post" enctype="multipart/form-data">
 
     <input class="form-control" type="text" name="username" placeholder="username" required>
     <input class="form-control" type="password" name="password" placeholder="password" required>
     <label for="image">Image</label>
      <input type="file" id="image" name="image" accept="image/*" required>
     <button>Submit</button>
-</form>
+</form> -->
+<div class="container">
+	<div>
+		<h1>
+			Sign Up
+		</h1><br>
+		<div class="mobile">
+			<form action = "/register" method = "post" enctype="multipart/form-data">
+				<div class="form-group">
+          <label for="exampleInputEmail">Email address</label>
+					<input class="form-control" type="text" name="username" placeholder="username" id="exampleInputEmail" required>
+				</div>
+				
+				<div class="form-group">
+          <label for="pass">Passwprd</label>
+					<input class="form-control" type="password" name="password" placeholder="password" id="pass" required>
+        </div>
+        <div class="form-group">
+          <label for="image">Image</label>
+          <input type="file" id="image" name="image" accept="image/*" required>
+        </div>
+				
+				
+				<div class="form-group">
+					<button class="btn btn-lg btn-primary btn-block ">
+						Sign Up
+					</button>
+				</div>
+
+			</form>
+			<a href="/">Go back</a>
+		</div>
+		
+	</div>
+	
+</div>
 
 
 <%-include("partials/footer.ejs") %>
