@@ -172,15 +172,22 @@ app.post("/image/new",middleware.isLoggedIn,upload.single('image'),function(req,
 
 app.get("/image/:id",function(req,res){
     User.findById(req.params.id,function(err, foundUser){
-        var images ;
-        var user = "" + foundUser.username;
+        if(err||foundUser==null){
+            req.flash("error","Link not found");
+            res.redirect("/");
+        }else{
+            var images ;
+       // var user = "" + foundUser.username;
           Picture.find({
            
             
         },function(err,found){
             images = [];
-            if(err)
-            console.log(err);
+            if(err){
+                console.log(err);
+                // req.flash("error","Link not found");
+            }
+            
             found.forEach(function(image,index){
                 
                 if(image.author.username===foundUser.username){
@@ -200,23 +207,35 @@ app.get("/image/:id",function(req,res){
             });
         });
      
+        }
+        
     });
     
 });
 
 app.get("/image/:userid/current/:imageid",function(req,res){
     Picture.findById(req.params.imageid,function(err,found){
-        if(err)
-        console.log(err);
+        if(err||found==null){
+            console.log(err);
+            req.flash("error","Link not found");
+            res.redirect("/");
+        }
+        
         else{
             console.log(found);
             User.findById(req.params.userid,function(err,foundUser){
-                res.render("show",{
-                    image:found,
-                    currentUser:req.user,
-                    user:foundUser,
-                    moment:moment
-                });
+                 if(err||foundUser==null){
+                        req.flash("error","Link not found");
+                        res.redirect("/");
+                 }else{
+                    res.render("show",{
+                        image:found,
+                        currentUser:req.user,
+                        user:foundUser,
+                        moment:moment
+                    });
+                 }
+                
             });
 
            
@@ -224,7 +243,10 @@ app.get("/image/:userid/current/:imageid",function(req,res){
     })
     
 })
-
+app.get("/*",function(req,res){
+    req.flash("error","Link not found");
+    res.redirect("/")
+})
 
 var port = process.env.PORT || 3000;
 app.listen(port, function () {
