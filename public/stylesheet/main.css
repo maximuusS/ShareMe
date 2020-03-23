@@ -72,6 +72,11 @@ h1{
 }
 @media (max-width: 1028px)  {
     .mobile {
-        width: 50%;
+        width: 70%;
     }
+    #header{
+        background: url("header.jpeg");
+        padding-bottom: 50px;
+    }
+    
 }

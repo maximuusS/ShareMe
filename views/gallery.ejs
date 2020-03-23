@@ -1,14 +1,20 @@
 <%-include("partials/header.ejs") %>
 
 <div class = "jumbotron " id="img">
-    <div class="row container ">
-        <div class="card gallery" style="width: 12rem;">
-        <img src="<%=User.image%>" class="card-img-top rounded" alt="">
+    <div class="container">
+        <div class="row">
+            <div class="card gallery" style="width: 12rem;">
+                <div class="">
+                    <img src="<%=User.image%>" class="card-img-top rounded" alt="">
+                </div>
+            
+        
+      </div>
+      
     
-  </div>
-  
-
-    <div class="col-md-6 gallery"><h1><%=User.username%></h1></div>
+        <div class="col-md-6 gallery"><h1><%=User.username%></h1></div>
+        </div>
+        
 </div>
 </div>
 <div class="container flash">
