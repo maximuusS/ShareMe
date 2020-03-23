@@ -1,0 +1,11 @@
+<%-include("partials/header.ejs") %>
+
+<form action = "/image/<%=currentUser._id%>/current/<%=image._id%>?_method=PUT" method = "POST" >
+
+    <input class="form-control" type="text" name="image[title]" value="<%=image.title%>" placeholder="image"  required>
+    <textarea name="image[description]" placeholder="description" required><%=image.description%></textarea>
+    
+    <button>Submit</button>
+</form>
+
+<%-include("partials/footer.ejs") %>

@@ -254,6 +254,27 @@ app.delete("/image/:userid/current/:id",middleware.checkOwnership,function(req,r
         }
     })
 });
+app.get("/image/:userid/current/:id/edit",middleware.checkOwnership,function(req,res){
+    Picture.findById(req.params.id,function(err,picture){
+        res.render("update_image",{
+            currentUser:req.user,
+            image:picture
+        });
+    });
+
+});
+app.put("/image/:userid/current/:id",middleware.checkOwnership,function(req,res){
+    Picture.findByIdAndUpdate(req.params.id,req.body.image,function(err , updatePicture){
+		if(err)
+		res.redirect("/");
+		else{
+			req.flash("success","Image updated");
+			res.redirect("/image/" + req.params.userid);
+			
+		}
+	});	
+
+});
 app.get("/*",function(req,res){
     req.flash("error","Link not found");
     res.redirect("/")
