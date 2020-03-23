@@ -20,20 +20,23 @@
 <div class="container">
 
 <div class="row">
-    <% User.forEach(function(user){ %>
-    <div class="col-lg-4 mb-4" id="">
-        <div class="card">
-            <img src="<%=user.image%>" class="card-img-top rounded height" alt="">
-        <div class="card-body">
-        <h5 class="card-title"><%=user.username%></h5>
+    <div class="card-deck">
+        <% User.forEach(function(user){ %>
+            <div class="col-lg-4 mb-4" id="">
+                <div class="card">
+                    <img src="<%=user.image%>" class="card-img-top rounded height" alt="">
+                <div class="card-body">
+                <h5 class="card-title"><%=user.username%></h5>
+                
+                <a href="/image/<%=user.id%>" class="btn btn-primary">View profile</a>
+                </div>
+                
+             </div>
         
-        <a href="/image/<%=user.id%>" class="btn btn-primary">View profile</a>
-        </div>
-        
-     </div>
-
+            </div>
+                <%})%>
     </div>
-        <%})%>
+   
     
     
 </div>
