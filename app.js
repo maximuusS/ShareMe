@@ -40,7 +40,16 @@ app.use(express.static(__dirname+"/public"));
 app.use(bodyParser.urlencoded({extended:true}));
 mongoose.set('useUnifiedTopology', true);
 
-mongoose.connect('mongodb://localhost:27017/share_movie', { useNewUrlParser: true });
+//mongoose.connect('mongodb://localhost:27017/share_movie', { useNewUrlParser: true });
+mongoose.connect(process.env.DB_LINK, {
+	 useNewUrlParser: true,
+	 useCreateIndex: true
+	 }).then(()=>{
+		 console.log("DB connected");
+	 }).catch(err =>{
+		 console.log("Error",err.message);
+	 });
+
 app.set("view engine","ejs");
 
 const User= require("./models/user");
