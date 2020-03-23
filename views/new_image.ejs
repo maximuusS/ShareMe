@@ -1,0 +1,12 @@
+<%-include("partials/header.ejs") %>
+
+<form action = "/image/new" method = "post" enctype="multipart/form-data">
+
+    <input class="form-control" type="text" name="title" placeholder="image" required>
+    <textarea name="description" placeholder="description" required></textarea>
+    <label for="image">Image</label>
+     <input type="file" id="image" name="image" accept="image/*" required>
+    <button>Submit</button>
+</form>
+
+<%-include("partials/footer.ejs") %>

@@ -1,0 +1,58 @@
+nav{
+    background-color:rgb(255, 217, 160);
+    
+}
+.navbar-brand{
+    font-family: 'Baloo Chettan 2', cursive;
+}
+
+
+    
+.flash{
+    margin-top: 10px;
+}
+#img{
+    background-image: url("pattern2.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position:center ;
+    color: white;
+    font-family: 'Baloo Chettan 2', cursive;
+    margin-top:0;
+    
+}
+
+.gallery{
+    margin:auto;
+    vertical-align: auto;
+    text-align: center;
+    
+}
+#header{
+    background: url("header.jpeg");
+}
+.thumb_img{
+    width:100%;
+
+}
+.flash{
+    width:100%;
+}
+.thumbnail{
+    padding:0;
+    border:1px rgb(230, 230, 230);
+    border-style: solid;
+    
+}
+.thumbnail .caption-full{
+	padding:9px;
+}
+.delete-form{
+	display: inline;
+}
+
+@media (max-width: 625px){
+.jumbotron {
+    padding:0;
+}
+}

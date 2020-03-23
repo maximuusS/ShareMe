@@ -1,0 +1,34 @@
+<%-include("partials/header.ejs") %>
+
+<div class = "jumbotron " id="img">
+    <div class="row container ">
+        <div class="card gallery" style="width: 12rem;">
+        <img src="<%=User.image%>" class="card-img-top rounded" alt="">
+    
+  </div>
+
+    <div class="col-md-6 gallery"><h1><%=User.username%></h1></div>
+</div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <%images.forEach(function(image){%>
+        <div class="col-lg-4 mb-4">
+            <div class="card">
+                <img class="card-img-top height" src="<%=image.image%>">
+                <div class="card-body"> 
+                    <h5 class="card-title"><%=image.title%></h5>
+                    <p class="card-text"><%=image.description%></p>
+                    <a href="/image/<%=User.id%>/current/<%=image.id%>" class="btn btn-outline-success btn-small">View More</a>
+                    <a href="" class="btn btn-outline-danger btn-small"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                </div>
+          </div>
+          
+        </div>
+        <%})%>
+    </div>
+ </div>   
+
+<%-include("partials/footer.ejs") %>

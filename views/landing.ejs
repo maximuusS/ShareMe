@@ -1,0 +1,42 @@
+<%-include("partials/header.ejs") %>
+
+
+
+
+    <section id="header" class="jumbotron text-center">
+        <h1 class="display-3">ShareMe</h1> 
+        <p class="lead">Looking for a place to share your photos?</p>    
+        <a href="/image/new" class="btn btn-primary">Add a new photo!</a>
+        <a href="" class="btn btn-success">Know more</a>
+     </section> 
+     <div class="container flash">
+        <% if(error && error.length > 0){ %>
+        <div class="alert alert-danger" role="alert"><%=error%></div>
+        <%}if(success && success.length > 0){ %>
+        <div class="alert alert-success" role="alert"><%=success%></div>
+        <%}%>
+      </div>
+    
+<div class="container">
+
+<div class="row">
+    <% User.forEach(function(user){ %>
+    <div class="col-lg-4 mb-4" id="">
+        <div class="card">
+            <img src="<%=user.image%>" class="card-img-top rounded height" alt="">
+        <div class="card-body">
+        <h5 class="card-title"><%=user.username%></h5>
+        
+        <a href="/image/<%=user.id%>" class="btn btn-primary">View profile</a>
+        </div>
+        
+     </div>
+
+    </div>
+        <%})%>
+    
+    
+</div>
+</div>
+  
+<%-include("partials/footer.ejs") %>
