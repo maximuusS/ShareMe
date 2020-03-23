@@ -21,7 +21,7 @@
 					</p>
 					<% if(currentUser && image.author.id.equals(currentUser._id)){ %>
 						<a href="/campgrounds/<%=user._id%>/edit" class="btn btn-warning">Edit</a>
-						<form class="delete-form" action="/campgrounds/<%=image._id%>?_method=DELETE" method="post">
+						<form class="delete-form" action="/image/<%=currentUser._id%>/current/<%=image._id%>?_method=DELETE" method="post">
 							<button class="btn btn-danger">Delete</button>
 						</form>
 				<%} %>

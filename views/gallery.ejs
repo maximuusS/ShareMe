@@ -6,11 +6,18 @@
         <img src="<%=User.image%>" class="card-img-top rounded" alt="">
     
   </div>
+  
 
     <div class="col-md-6 gallery"><h1><%=User.username%></h1></div>
 </div>
 </div>
-
+<div class="container flash">
+    <% if(error && error.length > 0){ %>
+    <div class="alert alert-danger" role="alert"><%=error%></div>
+    <%}if(success && success.length > 0){ %>
+    <div class="alert alert-success" role="alert"><%=success%></div>
+    <%}%>
+  </div>
 
 <div class="container">
     <div class="row">

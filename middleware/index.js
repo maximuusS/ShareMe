@@ -12,7 +12,7 @@ middlewareObj.checkOwnership = function(req,res,next){
             Picture.findById(req.params.id,function(err, foundImage){
                
                     if(err || !foundImage){
-                        req.flash("error","Campground not found");
+                        req.flash("error","Image not found");
                        
                         res.redirect("back");
                     }
@@ -23,14 +23,14 @@ middlewareObj.checkOwnership = function(req,res,next){
                             next();
                         }else{
                             req.flash("error","You are not authenticated!");
-                            res.redirect("back"); //go to backpage
+                            res.redirect("/"); //go to backpage
                         }
                         
                 }
             });
         }else{
             req.flash("error","You need to be logged in to do that!");
-            res.redirect("back");
+            res.redirect("/");
         }
 }
 

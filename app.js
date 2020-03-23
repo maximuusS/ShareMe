@@ -33,7 +33,7 @@ cloudinary.config({
 });
 
 
-
+app.use(methodOverride("_method"));
 app.use(flash());
 app.set("view engine", "ejs");
 app.use(express.static(__dirname+"/public")); 
@@ -162,7 +162,7 @@ app.post("/image/new",middleware.isLoggedIn,upload.single('image'),function(req,
 			console.log("error");
 		else{
 			req.flash("success","Image Added!");
-            res.redirect("/");
+            res.redirect("/image/"+req.user._id);
             console.log(newlyCreated);
 		}
 											  });
@@ -242,7 +242,18 @@ app.get("/image/:userid/current/:imageid",function(req,res){
         }
     })
     
-})
+});
+app.delete("/image/:userid/current/:id",middleware.checkOwnership,function(req,res){
+    Picture.findByIdAndRemove(req.params.id,function(err){
+        if(err){
+            req.flash("error",err.message);
+            res.redirect("/");
+        }else{
+            req.flash("success","Image deleted");
+            res.redirect("/image/"+req.params.userid);
+        }
+    })
+});
 app.get("/*",function(req,res){
     req.flash("error","Link not found");
     res.redirect("/")
