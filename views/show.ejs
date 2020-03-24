@@ -14,12 +14,7 @@
 						
 					</h3>
 
-					<div class="float-right">
-                        <button type="button" class="btn btn-xs btn-primary" data-toggle="modal"
-                                data-target="#imageLikes">
-                            <span>Total likes: <i class="fas fa-thumbs-up"></i> <%= image.likes.length %></span>
-                        </button>
-                    </div>
+					
                     <div style="padding-bottom: 10px;">
                         <form action="/image/<%=currentUser._id%>/current/<%= image._id %>/like" id="like" method="POST">
                             <div class="btn-group">
