@@ -2,6 +2,12 @@ var mongoose=require("mongoose");
 var pictureSchema= new mongoose.Schema({
 	title:String,
 	image:String,
+	likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        }
+    ],
 	description:String,
 	createdAt: { type: Date, default: Date.now },
 	author:{

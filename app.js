@@ -222,8 +222,8 @@ app.get("/image/:id",function(req,res){
     
 });
 
-app.get("/image/:userid/current/:imageid",function(req,res){
-    Picture.findById(req.params.imageid,function(err,found){
+app.get("/image/:userid/current/:imageid",middleware.isLoggedIn, function(req,res){
+    Picture.findById(req.params.imageid).populate("likes").exec(function(err,found){
         if(err||found==null){
             console.log(err);
             req.flash("error","Link not found");
@@ -282,8 +282,39 @@ app.put("/image/:userid/current/:id",middleware.checkOwnership,function(req,res)
 			
 		}
 	});	
+});
+
+app.post("/image/:userid/current/:id/like",middleware.isLoggedIn,function(req,res){
+    Picture.findById(req.params.id, function (err, foundImage) {
+        if (err) {
+            console.log(err);
+            return res.redirect("/");
+        }
+
+        // check if req.user._id exists in foundCampground.likes
+        var foundUserLike = foundImage.likes.some(function (like) {
+            return like.equals(req.user._id);
+        });
+
+        if (foundUserLike) {
+            // user already liked, removing like
+            foundImage.likes.pull(req.user._id);
+        } else {
+            // adding the new user like
+            foundImage.likes.push(req.user);
+        }
+
+        foundImage.save(function (err) {
+            if (err) {
+                console.log(err);
+                return res.redirect("/");
+            }
+            return res.redirect("/image/"+req.params.userid+"/current/" + foundImage._id);
+        });
+    });
 
 });
+
 app.get("/*",function(req,res){
     req.flash("error","Link not found");
     res.redirect("/")
