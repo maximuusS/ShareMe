@@ -370,7 +370,7 @@ app.delete("/image/:userid/current/:id/comment/:comment_id",middleware.checkComm
 });
 
 app.get("/*",function(req,res){
-    req.flash("error","Link not found");
+  //  req.flash("error","Link not found");
     res.redirect("/")
 })
 
