@@ -1,4 +1,11 @@
 <%- include("partials/header.ejs") %>
+<div class="container flash">
+    <% if(error && error.length > 0){ %>
+    <div class="alert alert-danger" role="alert"><%=error%></div>
+    <%}if(success && success.length > 0){ %>
+    <div class="alert alert-success" role="alert"><%=success%></div>
+    <%}%>
+</div>
 <div class="container">
 	<div class="row">
 		<div class="col-md-2">
@@ -74,7 +81,7 @@
 							
 						<%if(currentUser && comment.author.id.equals(currentUser._id)){%>
 								<a class="btn btn-xs btn-warning" href="">Edit</a>
-								<form class="delete-form" action="" method="post">
+								<form class="delete-form" action="/image/<%=currentUser._id%>/current/<%=image.id%>/comment/<%=comment._id%>?_method=DELETE" method="post">
 									<button class="btn btn-xs btn-danger">Delete</button>
 								</form>
 						<%}%>

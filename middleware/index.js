@@ -1,5 +1,5 @@
 var Picture = require("../models/picture");
-//var Comment = require("../models/comment");
+var Comment = require("../models/comment");
 
 var middlewareObj={};
 // all middlr
@@ -34,33 +34,33 @@ middlewareObj.checkOwnership = function(req,res,next){
         }
 }
 
-// middlewareObj.checkCommentOwnership = function(req,res,next){
-// 	if(req.isAuthenticated()){
-// 		//does usr owns it
+middlewareObj.checkCommentOwnership = function(req,res,next){
+	if(req.isAuthenticated()){
+		//does usr owns it
 		
-// 		Comment.findById(req.params.comment_id,function(err, foundComment){
+		Comment.findById(req.params.comment_id,function(err, foundComment){
              
-// 				if(err || !foundComment){
-// 					req.flash("error","Comment not found");
-// 					res.redirect("back");
-// 				}
+				if(err || !foundComment){
+					req.flash("error","Comment not found");
+					res.redirect("back");
+				}
 				
-// 				else{
-// 					//console.log(foundCamp.name);
-// 					if(foundComment.author.id.equals(req.user._id)){
-// 						next();
-// 					}else{
-//                         req.flash("error","You dont have permission to do that");
-// 						res.redirect("back"); //go to backpage
-// 					}
+				else{
+					//console.log(foundCamp.name);
+					if(foundComment.author.id.equals(req.user._id)){
+						next();
+					}else{
+                        req.flash("error","You dont have permission to do that");
+						res.redirect("back"); //go to backpage
+					}
 					
-// 			}
-// 		});
-// 	}else{
-//         req.flash("error","You need to be logged in to do that");
-// 		res.redirect("back");
-// 	}
-// }
+			}
+		});
+	}else{
+        req.flash("error","You need to be logged in to do that");
+		res.redirect("back");
+	}
+}
 
 middlewareObj.isLoggedIn= function(req,res,next){
 	if(req.isAuthenticated()){

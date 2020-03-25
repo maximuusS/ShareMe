@@ -346,6 +346,16 @@ app.post("/image/:userid/current/:id/comment",middleware.isLoggedIn, function(re
 		}
 	});
 });
+app.delete("/image/:userid/current/:id/comment/:comment_id",middleware.checkCommentOwnership,function(req,res){
+	Comment.findByIdAndDelete(req.params.comment_id,function(err){
+		if(err)
+		res.redirect("back");
+		else{
+			req.flash("success","Comment deleted");
+			res.redirect("/image/"+req.params.userid+"/current/"+req.params.id);
+		}
+	})
+});
 
 app.get("/*",function(req,res){
     req.flash("error","Link not found");
