@@ -62,14 +62,37 @@ h1{
     width:100%;
 
 }
+
 .flash{
     width:100%;
 }
+.comment{
+    background-color: rgb(240, 240, 240);
+    margin-right:50px;
+    border-radius: 10px;
+
+}
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
 .thumbnail{
     padding:0;
     border:1px rgb(230, 230, 230);
     border-style: solid;
     
+}
+hr{
+    color:rgb(190, 190, 190);
+}
+.well{
+    padding:0;
+    border:2px rgb(190, 190, 190);
+    border-style: solid;
+    
+    border-radius: 5px;
 }
 .thumbnail .caption-full{
 	padding:9px;

@@ -9,6 +9,13 @@ var pictureSchema= new mongoose.Schema({
         }
     ],
 	description:String,
+	
+	comments:[
+		{
+			type:mongoose.Schema.Types.ObjectId,
+			ref:"Comment"
+		}
+	],	
 	createdAt: { type: Date, default: Date.now },
 	author:{
 		id:{

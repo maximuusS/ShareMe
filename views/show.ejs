@@ -54,11 +54,58 @@
 			</div>	
 			
 					
+			<br>
+			<div class="well">
+				
+				
+				<% image.comments.forEach(function(comment){ %>
+					<div class="row">
+						<div class="col-md-12">
+							<br>
+							<image  src="<%=comment.author.image%>" class="img-fluid avatar" ></image>
+							
+								<strong><%=comment.author.username%></strong>
+						
+							<span class="float-right"><%=moment(comment.createdAt).fromNow()%></span>
+							<p style="margin-left: 55px;" class="comment">
+							<%=comment.text%>
+							</p>
+							
+							
+						<%if(currentUser && comment.author.id.equals(currentUser._id)){%>
+								<a class="btn btn-xs btn-warning" href="">Edit</a>
+								<form class="delete-form" action="" method="post">
+									<button class="btn btn-xs btn-danger">Delete</button>
+								</form>
+						<%}%>
+						<hr class="m-0">
+						
+						</div>
+					</div>
+					
+
+
+				<%})%>
+			</div>
+				<br>
+				<div class="text-right">
+					<form  action="/image/<%=currentUser._id%>/current/<%=image.id%>/comment" method="POST">
+						<div style="display: inline-flexbox;">
+							<div class = "form-group">
+								<input class="form-control" type="text" name="comment[text]" placeholder="text" width="100%">
+							</div>
+							<button class="btn btn-success btn-sm">Add new comment</button>
+						</div>
+						
+					</form>
+							
+				
+				
+			</div>
 			<div class="mt-3" >
 				<a class="back" href="/image/<%=user._id%>">Go back</a>
 			</div>
 
-				
 		</div>
 		
 	</div>

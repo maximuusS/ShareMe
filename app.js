@@ -51,7 +51,7 @@ mongoose.connect(process.env.DB_LINK, {
 	 });
 
 app.set("view engine","ejs");
-
+const Comment = require("./models/comment")
 const User= require("./models/user");
 const Picture= require("./models/picture");
 app.use(require("express-session")({
@@ -223,10 +223,10 @@ app.get("/image/:id",function(req,res){
 });
 
 app.get("/image/:userid/current/:imageid",middleware.isLoggedIn, function(req,res){
-    Picture.findById(req.params.imageid).populate("likes").exec(function(err,found){
+    Picture.findById(req.params.imageid).populate("comments likes").exec(function(err,found){
         if(err||found==null){
             console.log(err);
-            req.flash("error","Link not found");
+            req.flash("error","Err");
             res.redirect("/");
         }
         
@@ -313,6 +313,38 @@ app.post("/image/:userid/current/:id/like",middleware.isLoggedIn,function(req,re
         });
     });
 
+});
+//COMMENTS
+
+app.post("/image/:userid/current/:id/comment",middleware.isLoggedIn, function(req,res){
+    Picture.findById(req.params.id,function(err,image){
+		if(err){
+			console.log(err);
+			res.redirect("/");
+		}
+		else{
+			Comment.create(req.body.comment,function(err,comment){
+				if(err){
+                    req.flash("error","Something went wrong");
+                    res.redirect("/");
+                }
+					
+				else{
+					//add username and id
+					comment.author.id = req.user._id;
+                    comment.author.username = req.user.username;
+                    comment.author.image = req.user.image;
+					//console.log(req.user.username);
+					comment.save();
+					//console.log(comment.author+" ");
+					image.comments.push(comment);
+					image.save();
+					req.flash("success","Succesfully added comment");
+					res.redirect("/image/"+req.params.userid+"/current/"+req.params.id);
+				}
+			});
+		}
+	});
 });
 
 app.get("/*",function(req,res){
