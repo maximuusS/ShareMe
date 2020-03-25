@@ -80,16 +80,47 @@
 							
 							
 						<%if(currentUser && comment.author.id.equals(currentUser._id)){%>
-								<a class="btn btn-xs btn-warning" href="">Edit</a>
+								<a class="btn btn-xs btn-warning" data-toggle="modal" data-target="#edit-comment" >Edit</a>
 								<form class="delete-form" action="/image/<%=currentUser._id%>/current/<%=image.id%>/comment/<%=comment._id%>?_method=DELETE" method="post">
 									<button class="btn btn-xs btn-danger">Delete</button>
 								</form>
+
+								<!-- edit comment modal -->
+							<div id="edit-comment" class="modal" tabindex="-1" role="dialog">
+								<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header bg-dark text-light">
+									<h5 class="modal-title">Edit Comment</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									</div>
+									<div class="modal-body">
+										<form  action="/image/<%=currentUser._id%>/current/<%=image.id%>/comment/<%=comment._id%>?_method=PUT" method="POST">
+											<div style="display: inline-flexbox;">
+												<div class = "form-group">
+													<input class="form-control" type="text" value="<%=comment.text%>" name="comment[text]" placeholder="text" width="100%">
+												</div>
+												
+											</div>
+											<div class="modal-footer">
+												<button " class="btn btn-dark">Save changes</button>
+												
+											</div>
+										</form>
+									</div>
+									
+								</div>
+								</div>
+							</div>
 						<%}%>
 						<hr class="m-0">
 						
 						</div>
 					</div>
 					
+
+  
 
 
 				<%})%>
@@ -157,5 +188,7 @@
         </div>
     </div>
 </div>
+
+  
 
 <%- include("partials/footer.ejs") %>

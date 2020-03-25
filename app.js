@@ -346,6 +346,18 @@ app.post("/image/:userid/current/:id/comment",middleware.isLoggedIn, function(re
 		}
 	});
 });
+app.put("/image/:userid/current/:id/comment/:comment_id",middleware.checkCommentOwnership,function(req,res){
+	Comment.findByIdAndUpdate(req.params.comment_id,req.body.comment,function(err,updatedComment)
+	{
+		if(err)
+		res.redirect("back");
+		else{
+			req.flash("success","Comment edited");
+			res.redirect("/image/"+req.params.userid+"/current/"+req.params.id);
+		}
+		
+	});
+});
 app.delete("/image/:userid/current/:id/comment/:comment_id",middleware.checkCommentOwnership,function(req,res){
 	Comment.findByIdAndDelete(req.params.comment_id,function(err){
 		if(err)
