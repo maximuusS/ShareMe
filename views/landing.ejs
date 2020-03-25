@@ -6,8 +6,8 @@
     <section id="header" class="jumbotron text-center">
         <h1 class="display-3">ShareMe</h1> 
         <p class="lead">Looking for a place to share your photos?</p>    
-        <a href="/image/new" class="btn btn-primary">Add a new photo!</a>
-        <a href="" class="btn btn-success">Know more</a>
+        <a href="/image/new" class="btn btn-primary"  >Add a new photo!</a>
+        <a class="btn btn-success" data-toggle="modal" data-target="#learn-more">Know more</a>
      </section> 
      <div class="container flash">
         <% if(error && error.length > 0){ %>
@@ -41,5 +41,26 @@
     
 </div>
 </div>
+
+<div id="learn-more" class="modal" tabindex="-1"  role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header  bg-secondary text-light">
+          <h5 class="modal-title" style="font-weight: 200;">Know More</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Dont know what to do during lockdown?</strong></b><br>
+          Fret no more! as you can consume your time by sharing your old images or current images of you just sleeping and doing nothing with others by just clicking on a simple signup button!</p>
+        </div>
+        <div class="modal-footer">
+          
+          <button type="button" class="btn btn-success" data-dismiss="modal">I am excited :D</button>
+        </div>
+      </div>
+    </div>
+  </div>
   
 <%-include("partials/footer.ejs") %>
