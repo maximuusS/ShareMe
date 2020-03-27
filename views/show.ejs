@@ -23,7 +23,8 @@
 					</h3>
 
 					
-                    <div style="padding-bottom: 10px;">
+					<div style="padding-bottom: 10px;">
+						
                         <form action="/image/<%=currentUser._id%>/current/<%= image._id %>/like" id="like" method="POST">
                             <div class="btn-group">
                                 <% if (currentUser && image.likes.some(function (like) {

@@ -119,9 +119,10 @@ app.post("/register",upload.single('image'),function(req,res){
 			return res.redirect("/register");
 		}
 		passport.authenticate("local")(req,res,function(){
-			
-            cloudinary.uploader.upload(req.file.path,function(result){
-                req.body.image = result.secure_url;
+            
+            if(!req.file){
+                console.log("No file");
+                req.body.image = "https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg";
                 User.findById(req.user.id,function(err,founduser){
                     if(founduser){
                         founduser.image=req.body.image;
@@ -132,12 +133,29 @@ app.post("/register",upload.single('image'),function(req,res){
                     }
                     
                 });
-                
+            }else{
+                  cloudinary.uploader.upload(req.file.path,function(result){
+       
+                    req.body.image = result.secure_url;
+                    console.log(result.secure_url);
+            
+     
+                User.findById(req.user.id,function(err,founduser){
+                    if(founduser){
+                        founduser.image=req.body.image;
+                        founduser.save(function(){
+                            req.flash("success","Welcome to ShareMe "+ user.username);
+                            res.redirect("/");
+                        });
+                    }
+                    
+                });
+            });
 
                 console.log(req.body.image);
                // res.redirect("/");
-            });
-     
+            
+            }
 		});
 	});
 });
